@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Expense Entry</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c32",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111618] dark:text-white transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-xl bg-background-light dark:bg-background-dark">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-surface-light dark:bg-surface-dark p-4 shadow-sm transition-colors duration-200">
+<button class="text-[#111618] dark:text-white flex size-12 shrink-0 items-center justify-start hover:opacity-70 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-[#111618] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">支出を入力</h2>
+<button class="flex w-12 items-center justify-end hover:opacity-70 active:scale-95 transition-transform">
+<p class="text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0">保存</p>
+</button>
+</header>
+<main class="flex-1 flex flex-col gap-6 p-4">
+<!-- Amount Display (Modified TextField) -->
+<section class="flex flex-col items-center justify-center pt-4 pb-2">
+<label class="sr-only" for="amount">金額</label>
+<div class="relative flex items-center justify-center w-full">
+<span class="text-4xl font-bold text-[#111618] dark:text-white mr-1">¥</span>
+<input autofocus="" class="w-full max-w-[240px] bg-transparent border-none text-center text-5xl font-extrabold text-[#111618] dark:text-white focus:ring-0 placeholder-gray-300 dark:placeholder-gray-600 p-0" id="amount" inputmode="numeric" placeholder="0" type="number"/>
+</div>
+</section>
+<!-- Category Grid -->
+<section>
+<p class="text-[#111618] dark:text-gray-200 text-sm font-bold leading-normal mb-3 px-1">カテゴリー</p>
+<div class="grid grid-cols-4 gap-4">
+<!-- Item 1: Active -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 transition-all group-active:scale-95">
+<span class="material-symbols-outlined text-white text-2xl">restaurant</span>
+</div>
+<span class="text-xs font-medium text-primary">食費</span>
+</button>
+<!-- Item 2 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">shopping_cart</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">日用品</span>
+</button>
+<!-- Item 3 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">train</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">交通費</span>
+</button>
+<!-- Item 4 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">checkroom</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">衣服</span>
+</button>
+<!-- Item 5 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">movie</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">娯楽</span>
+</button>
+<!-- Item 6 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">water_drop</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">光熱費</span>
+</button>
+<!-- Item 7 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">local_hospital</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">医療費</span>
+</button>
+<!-- Item 8 -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="size-14 rounded-full bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 flex items-center justify-center transition-all group-hover:bg-gray-50 dark:group-hover:bg-gray-800 group-active:scale-95">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-400 text-2xl">more_horiz</span>
+</div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">その他</span>
+</button>
+</div>
+</section>
+<!-- Wallet Selection -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-sm border border-transparent dark:border-gray-800">
+<p class="text-[#111618] dark:text-gray-200 text-sm font-bold leading-normal mb-3">支払いウォレット</p>
+<div class="flex h-12 w-full items-center justify-center rounded-lg bg-gray-100 dark:bg-[#25363c] p-1">
+<label class="relative flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md transition-all">
+<input class="peer invisible w-0 absolute" name="wallet" type="radio" value="me"/>
+<span class="z-10 text-sm font-bold leading-normal text-gray-500 dark:text-gray-400 peer-checked:text-[#111618] dark:peer-checked:text-black w-full h-full flex items-center justify-center">自分</span>
+<div class="absolute inset-0 bg-white dark:bg-primary hidden peer-checked:block shadow-sm rounded-md transition-all"></div>
+</label>
+<label class="relative flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md transition-all">
+<input class="peer invisible w-0 absolute" name="wallet" type="radio" value="partner"/>
+<span class="z-10 text-sm font-bold leading-normal text-gray-500 dark:text-gray-400 peer-checked:text-[#111618] dark:peer-checked:text-black w-full h-full flex items-center justify-center">相手</span>
+<div class="absolute inset-0 bg-white dark:bg-primary hidden peer-checked:block shadow-sm rounded-md transition-all"></div>
+</label>
+<label class="relative flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md transition-all">
+<input checked="" class="peer invisible w-0 absolute" name="wallet" type="radio" value="shared"/>
+<span class="z-10 text-sm font-bold leading-normal text-gray-500 dark:text-gray-400 peer-checked:text-[#111618] dark:peer-checked:text-black w-full h-full flex items-center justify-center">共同</span>
+<div class="absolute inset-0 bg-white dark:bg-primary hidden peer-checked:block shadow-sm rounded-md transition-all"></div>
+</label>
+</div>
+<!-- Split Slider (Only visible for shared/joint expenses, conceptually) -->
+<div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 animate-in fade-in slide-in-from-top-2 duration-300">
+<div class="flex items-center justify-between mb-3">
+<p class="text-[#111618] dark:text-gray-200 text-sm font-medium leading-normal">負担割合</p>
+<div class="flex gap-1 text-sm font-bold text-[#111618] dark:text-gray-200 bg-gray-100 dark:bg-[#25363c] px-2 py-0.5 rounded">
+<span class="text-primary">50</span>
+<span class="text-gray-400">:</span>
+<span class="text-gray-500 dark:text-gray-400">50</span>
+</div>
+</div>
+<div class="relative flex h-6 w-full items-center">
+<input class="absolute z-20 w-full h-full opacity-0 cursor-pointer" max="100" min="0" type="range" value="50"/>
+<div class="flex h-2 w-full items-center rounded-full bg-gray-200 dark:bg-[#25363c] overflow-hidden">
+<div class="h-full w-1/2 bg-primary rounded-l-full"></div>
+</div>
+<!-- Thumb visual -->
+<div class="absolute left-1/2 -translate-x-1/2 size-6 rounded-full bg-white dark:bg-surface-dark border-4 border-primary shadow-md z-10 pointer-events-none"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-xs text-primary font-medium">自分</span>
+<span class="text-xs text-gray-500 dark:text-gray-400 font-medium">相手</span>
+</div>
+</div>
+</section>
+<!-- Details Section -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-transparent dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
+<!-- Date Picker Row -->
+<div class="flex items-center gap-3 p-4">
+<div class="text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<label class="flex-1">
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium mb-0.5">日付</p>
+<input class="block w-full border-none p-0 text-[#111618] dark:text-white bg-transparent focus:ring-0 font-medium text-base h-6" type="date" value="2023-10-24"/>
+</label>
+<span class="material-symbols-outlined text-gray-400 text-sm">chevron_right</span>
+</div>
+<!-- Store Input Row -->
+<div class="flex items-center gap-3 p-4">
+<div class="text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<label class="flex-1">
+<p class="text-xs text-gray-500 dark:text-gray-400 font-medium mb-0.5">お店 / メモ</p>
+<input class="block w-full border-none p-0 text-[#111618] dark:text-white bg-transparent focus:ring-0 placeholder-gray-300 dark:placeholder-gray-600 font-medium text-base h-6" placeholder="店名を入力" type="text"/>
+</label>
+</div>
+</section>
+<div class="h-10"></div> <!-- Spacer for scrolling -->
+</main>
+</div>
+</body></html>

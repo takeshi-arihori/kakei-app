@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ホーム ダッシュボード</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#18282e",
+                        "text-primary-light": "#111618",
+                        "text-primary-dark": "#f0f5f7",
+                        "text-secondary-light": "#637588",
+                        "text-secondary-dark": "#9aaab5",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-text-primary-light dark:text-text-primary-dark">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Top App Bar -->
+<div class="flex items-center bg-surface-light dark:bg-surface-dark p-4 pb-2 justify-between sticky top-0 z-20 shadow-sm dark:shadow-none dark:border-b dark:border-white/5">
+<div class="flex size-12 shrink-0 items-center justify-center cursor-pointer text-text-primary-light dark:text-text-primary-dark hover:bg-black/5 dark:hover:bg-white/5 rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">ホーム</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-12 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent text-text-primary-light dark:text-text-primary-dark hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex flex-col gap-6 p-4">
+<!-- Total Balance Section -->
+<section class="flex flex-col gap-2">
+<h2 class="text-[28px] font-bold leading-tight text-text-primary-light dark:text-text-primary-dark">今月の残高</h2>
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-blue-500 p-6 shadow-lg text-white">
+<div class="relative z-10 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium opacity-90">合計残高</p>
+<span class="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold backdrop-blur-sm">+5% 先月比</span>
+</div>
+<p class="text-4xl font-bold tracking-tight">¥124,000</p>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 rounded-lg bg-white/20 py-2 text-sm font-bold backdrop-blur-md transition hover:bg-white/30">入金</button>
+<button class="flex-1 rounded-lg bg-white/20 py-2 text-sm font-bold backdrop-blur-md transition hover:bg-white/30">送金</button>
+</div>
+</div>
+<!-- Decorative Circle -->
+<div class="absolute -right-6 -top-10 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
+<div class="absolute -bottom-10 -left-6 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
+</div>
+</section>
+<!-- Settlement Status (Notification Card) -->
+<section>
+<div class="flex items-center justify-between rounded-xl bg-surface-light dark:bg-surface-dark border border-primary/20 p-4 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">currency_yen</span>
+</div>
+<div>
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">立替金の精算</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">パートナーへ <span class="font-bold text-primary">¥2,500</span> の支払いがあります</p>
+</div>
+</div>
+<button class="rounded-lg bg-primary px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-primary/90">
+                        精算する
+                    </button>
+</div>
+</section>
+<!-- Wallets Section -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">ウォレット</h3>
+<button class="text-sm font-bold text-primary hover:opacity-80">すべて見る</button>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<!-- Me Wallet -->
+<div class="flex flex-col gap-2 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-300">
+<span class="material-symbols-outlined text-lg">person</span>
+</div>
+<div>
+<p class="text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark">自分</p>
+<p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">¥42k</p>
+</div>
+</div>
+<!-- Partner Wallet -->
+<div class="flex flex-col gap-2 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-300">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</div>
+<div>
+<p class="text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark">相手</p>
+<p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">¥38k</p>
+</div>
+</div>
+<!-- Shared Wallet -->
+<div class="flex flex-col gap-2 rounded-xl bg-surface-light dark:bg-surface-dark p-4 shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-teal-600 dark:bg-teal-900/30 dark:text-teal-300">
+<span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-xs font-medium text-text-secondary-light dark:text-text-secondary-dark">共有</p>
+<p class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">¥44k</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Transactions Section -->
+<section class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-text-primary-light dark:text-text-primary-dark">最近の履歴</h3>
+<button class="text-sm font-bold text-primary hover:opacity-80">もっと見る</button>
+</div>
+<div class="flex flex-col gap-0 overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+<!-- Item 1 -->
+<div class="flex items-center gap-4 p-4 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-300">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">スーパーライフ</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">共有 ・ 食費</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">-¥3,240</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">今日</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-4 p-4 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">
+<span class="material-symbols-outlined">train</span>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">定期券更新</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">自分 ・ 交通費</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">-¥12,500</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">昨日</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-4 p-4 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-300">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">ユニクロ</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">共有 ・ 日用品</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">-¥4,990</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">10月24日</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-300">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<div class="flex flex-1 flex-col">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">映画館</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">相手 ・ 娯楽</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-text-primary-light dark:text-text-primary-dark">-¥3,800</p>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark">10月22日</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 z-50 w-full border-t border-gray-200 dark:border-white/5 bg-surface-light dark:bg-surface-dark pb-safe">
+<div class="flex h-16 items-center justify-around px-2">
+<button class="flex flex-1 flex-col items-center justify-center gap-1 text-primary">
+<span class="material-symbols-outlined filled">home</span>
+<span class="text-[10px] font-bold">ホーム</span>
+</button>
+<button class="flex flex-1 flex-col items-center justify-center gap-1 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">ウォレット</span>
+</button>
+<!-- Center Add Button -->
+<div class="relative -top-5 flex flex-col items-center justify-center">
+<button class="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg shadow-primary/40 transition hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<button class="flex flex-1 flex-col items-center justify-center gap-1 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium">分析</span>
+</button>
+<button class="flex flex-1 flex-col items-center justify-center gap-1 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">設定</span>
+</button>
+</div>
+<!-- Safe Area Spacer for iOS Home Indicator -->
+<div class="h-6 w-full bg-surface-light dark:bg-surface-dark"></div>
+</nav>
+</div>
+</body></html>

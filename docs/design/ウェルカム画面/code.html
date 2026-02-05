@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ウェルカム画面 - 家計簿アプリ</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#13ec80",
+              "primary-hover": "#0fd673",
+              "background-light": "#f6f8f7",
+              "background-dark": "#102219",
+              "text-main": "#111814",
+              "text-sub": "#637588",
+            },
+            fontFamily: {
+              "display": ["Manrope", "Noto Sans JP", "sans-serif"],
+              "body": ["Manrope", "Noto Sans JP", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem", 
+              "lg": "0.5rem", 
+              "xl": "0.75rem", 
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+            backgroundImage: {
+              'gradient-soft': 'linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(19, 236, 128, 0.05) 100%)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', 'Noto Sans JP', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white h-screen overflow-hidden flex flex-col items-center justify-center">
+<!-- Mobile Container -->
+<div class="relative w-full max-w-md h-full flex flex-col bg-white dark:bg-gray-900 shadow-xl overflow-y-auto">
+<!-- Header / Status Bar Area Placeholder -->
+<div class="h-12 w-full flex items-center justify-between px-6 shrink-0 z-10">
+<!-- Often empty in web mockups for phone, but keeps spacing correct -->
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center px-6 pb-6 w-full">
+<!-- Hero Image Section -->
+<div class="w-full mb-8 flex justify-center">
+<div class="relative w-full aspect-[4/3] max-w-[320px] rounded-2xl overflow-hidden shadow-sm">
+<!-- Decorative bg blobs -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-blue-400/10 rounded-full blur-xl translate-y-1/2 -translate-x-1/2"></div>
+<!-- Actual Image Container -->
+<div class="w-full h-full bg-center bg-contain bg-no-repeat relative z-10" data-alt="Happy couple analyzing finances on a tablet with coins and piggy bank" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGqBgvUbMotBYBdxQxI_rAr_Uxz2Z_c3XlL-0MPViaL1zIDy0WCiufoF_I5BorND7AjO1hEj6S_P5JgDyiURScTOjg5z38_jPryOlDX1a3ZDcIuDTQAHHs3hllenkrtKMBCEf3S_JGds49uq2cwY0UddIod3Vi9U5-FGxk3ROi_pM3k6prr-IWO9zt7JBEeHKf7_W2lnmIFLgAHM0tWlZLYx81g3sLIGJJsPwHJbr_xtIJKxZWoMTjvjrlA8030mDF5kCg2QnAA2Cv");'>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="flex flex-col items-center text-center gap-4 mb-8">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-3xl">savings</span>
+<span class="text-sm font-bold tracking-widest text-primary uppercase">Couple Budget</span>
+</div>
+<h1 class="text-text-main dark:text-white tracking-tight text-[28px] sm:text-[32px] font-bold leading-tight px-2">
+                    ふたりの家計簿を<br/>はじめよう
+                </h1>
+<p class="text-text-sub dark:text-gray-400 text-base font-normal leading-relaxed px-4 max-w-[300px]">
+                    共有財布も個人財布もこれひとつで。<br/>シンプルで使いやすい家計簿アプリ。
+                </p>
+</div>
+<!-- Features / Small Grid (Optional Visual Interest) -->
+<div class="grid grid-cols-2 gap-3 w-full max-w-[320px] mb-8 opacity-80">
+<div class="bg-background-light dark:bg-white/5 rounded-xl p-3 flex items-center justify-center gap-2 border border-transparent dark:border-white/10">
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+<span class="text-xs font-bold text-text-sub dark:text-gray-300">共有ウォレット</span>
+</div>
+<div class="bg-background-light dark:bg-white/5 rounded-xl p-3 flex items-center justify-center gap-2 border border-transparent dark:border-white/10">
+<span class="material-symbols-outlined text-blue-400 text-xl">pie_chart</span>
+<span class="text-xs font-bold text-text-sub dark:text-gray-300">自動グラフ化</span>
+</div>
+</div>
+</div>
+<!-- Bottom Action Area -->
+<div class="w-full px-6 py-6 bg-white dark:bg-gray-900 shrink-0 border-t border-gray-100 dark:border-gray-800">
+<div class="flex flex-col gap-3 w-full max-w-[480px] mx-auto">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary hover:bg-primary-hover transition-colors text-[#111814] text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 active:scale-[0.98]">
+<span class="truncate">新規登録</span>
+</button>
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-background-light dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors text-text-main dark:text-white text-base font-bold leading-normal tracking-[0.015em] active:scale-[0.98]">
+<span class="truncate">ログイン</span>
+</button>
+</div>
+<p class="text-xs text-center text-text-sub dark:text-gray-500 mt-6">
+                利用を開始することで、<a class="underline hover:text-primary" href="#">利用規約</a> と <a class="underline hover:text-primary" href="#">プライバシーポリシー</a> に同意したものとみなされます。
+            </p>
+</div>
+</div>
+</body></html>

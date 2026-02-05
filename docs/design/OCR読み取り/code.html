@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>レシートを読み取る</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#18282e",
+                        "text-primary-light": "#111618",
+                        "text-primary-dark": "#f0f5f7",
+                        "text-secondary-light": "#637588",
+                        "text-secondary-dark": "#9aaab5",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .receipt-scanner-frame {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+        }
+        .corner-marker {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-color: #0db9f2;
+            border-width: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-black font-display antialiased text-white overflow-hidden">
+<div class="relative flex h-screen w-full flex-col">
+<div class="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent">
+<button class="flex size-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="text-sm font-bold tracking-wider">レシート読み取り</h1>
+<button class="flex size-10 items-center justify-center rounded-full bg-black/20 backdrop-blur-md">
+<span class="material-symbols-outlined text-xl">flash_on</span>
+</button>
+</div>
+<div class="relative flex-1 bg-gray-900 flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Receipt background" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbZN8vA7PjRpAxbFb7KNqTP4MammCIs4h20z1fL6XHsgbruUcN-4VQz7m5A5kuX0kptQ67Ee1N1EgtU-CD-FtBP9NgNELK-7HB3U_Umf9-dEPOyJcnc-IJFysAsoyF9EvkoEXD3drHprW09ihN5rC6hZ0Sf93d0WohTOFm5gSIkz7Oku4TfcbEsnvwAnqJ7LHsAeV_DTrEDt5KdKd-X28TIZlMB9bvvBPIBUsh9qGVUPYpHa8_fS0JUy6ZA5vc3e1LibLDO9eTYPnP"/>
+</div>
+<div class="relative z-10 w-[75%] aspect-[1/2] max-h-[60vh] receipt-scanner-frame rounded-xl">
+<div class="corner-marker top-0 left-0 border-t border-l rounded-tl-lg"></div>
+<div class="corner-marker top-0 right-0 border-t border-r rounded-tr-lg"></div>
+<div class="corner-marker bottom-0 left-0 border-b border-l rounded-bl-lg"></div>
+<div class="corner-marker bottom-0 right-0 border-b border-r rounded-br-lg"></div>
+<div class="absolute top-1/4 left-0 w-full h-1 bg-primary/60 shadow-[0_0_15px_rgba(13,185,242,0.8)]"></div>
+<p class="absolute -top-12 left-0 w-full text-center text-xs font-medium text-white/90">レシートを枠内に収めてください</p>
+</div>
+</div>
+<div class="absolute bottom-40 left-4 right-4 z-40">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-4 shadow-2xl flex items-center gap-4 border border-white/10 text-text-primary-light dark:text-text-primary-dark">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">receipt_long</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-[10px] font-bold text-primary uppercase tracking-wider">読み取り中...</p>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold">¥3,450</span>
+<span class="text-xs text-text-secondary-light truncate">スーパーライフ 本町店</span>
+</div>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+</div>
+<div class="bg-black/80 backdrop-blur-xl p-8 pb-12 flex flex-col gap-8 relative z-50">
+<div class="flex items-center justify-between">
+<button class="flex flex-col items-center gap-1.5 group">
+<div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition group-active:bg-white/20">
+<span class="material-symbols-outlined text-2xl">image</span>
+</div>
+<span class="text-[10px] font-medium text-white/80">アルバム</span>
+</button>
+<button class="relative flex h-20 w-20 items-center justify-center rounded-full border-4 border-white p-1 transition active:scale-90">
+<div class="h-full w-full rounded-full bg-white ring-2 ring-black"></div>
+</button>
+<button class="flex flex-col items-center gap-1.5 group">
+<div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition group-active:bg-white/20">
+<span class="material-symbols-outlined text-2xl">help_outline</span>
+</div>
+<span class="text-[10px] font-medium text-white/80">ガイド</span>
+</button>
+</div>
+</div>
+</div>
+<div class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-end">
+<div class="bg-surface-light dark:bg-surface-dark w-full rounded-t-3xl p-6 pb-10 flex flex-col gap-6 text-text-primary-light dark:text-text-primary-dark">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold">内容を確認</h3>
+<button class="text-primary font-bold">やり直し</button>
+</div>
+<div class="flex flex-col gap-4">
+<div class="p-4 rounded-xl bg-background-light dark:bg-white/5 flex flex-col gap-1">
+<label class="text-[10px] font-bold text-text-secondary-light">店舗名</label>
+<input class="bg-transparent border-none p-0 font-bold text-lg focus:ring-0" type="text" value="スーパーライフ"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-background-light dark:bg-white/5 flex flex-col gap-1">
+<label class="text-[10px] font-bold text-text-secondary-light">金額</label>
+<div class="flex items-baseline gap-1">
+<span class="text-sm font-bold">¥</span>
+<input class="bg-transparent border-none p-0 font-bold text-lg focus:ring-0 w-full" type="number" value="3450"/>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-background-light dark:bg-white/5 flex flex-col gap-1">
+<label class="text-[10px] font-bold text-text-secondary-light">カテゴリー</label>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500 text-sm">restaurant</span>
+<span class="font-bold">食費</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/20">
+<div class="flex items-center gap-3">
+<div class="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+<span class="material-symbols-outlined text-sm">group</span>
+</div>
+<div>
+<p class="text-xs font-bold">共有ウォレット</p>
+<p class="text-[10px] text-text-secondary-light">支払いは折半されます</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-secondary-light">chevron_right</span>
+</div>
+</div>
+<button class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30">
+                この内容で登録する
+            </button>
+</div>
+</div>
+
+</body></html>

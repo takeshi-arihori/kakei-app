@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>精算管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111618] dark:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer">
+<span class="material-symbols-outlined text-[#111618] dark:text-white" style="font-size: 24px;">arrow_back</span>
+</div>
+<h2 class="text-[#111618] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">精算管理</h2>
+<div class="flex w-12 items-center justify-end cursor-pointer">
+<p class="text-primary text-base font-bold leading-normal tracking-[0.015em] shrink-0">履歴</p>
+</div>
+</div>
+<!-- Main Settlement Info -->
+<div class="flex flex-col items-center justify-center pt-8 pb-6 px-4">
+<p class="text-[#60808a] dark:text-gray-400 text-sm font-normal leading-normal text-center">今回の精算額</p>
+<h1 class="text-[#111618] dark:text-white tracking-light text-[40px] font-bold leading-tight text-center mt-2">¥15,000</h1>
+<!-- Payment Direction Card -->
+<div class="mt-8 w-full max-w-sm">
+<div class="flex flex-col items-center justify-center gap-4 rounded-xl bg-white dark:bg-[#1a2c32] p-6 shadow-sm border border-[#e6e8e8] dark:border-gray-700">
+<div class="flex items-center justify-between w-full px-4">
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 bg-center bg-no-repeat bg-cover rounded-full border-2 border-white dark:border-[#1a2c32] shadow-md" data-alt="Profile photo of Taro" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrQk5CXnPWufZmwTNbg3FwHJ9Bdrf7Ho94XI4dGCkl41Ty5J15s2jGSqRjY_pUuTzJLgVdlCV4CMCq_El6sxMipjHwdUfLplhNd6pnaVzmovmlp67Pkd5DcNzoqgm4hGrs8nzZVCZdiltCRE7bj6iaVcUN4-mVgUw5pc2qR7toIA-lOIohQuB-uatjn_iffrGHoSw5XLaFUvmnNq63FqUZ6NHxjL2YEhscmUlGWc8VlU35d5tPWn3xyd0m3OVcV-diJM-0C6F_vrgg");'></div>
+<span class="text-sm font-bold">太郎</span>
+</div>
+<div class="flex flex-col items-center flex-1 px-4">
+<span class="text-[#60808a] dark:text-gray-400 text-xs mb-1">支払う</span>
+<div class="w-full h-[2px] bg-primary/30 relative">
+<div class="absolute right-0 -top-[5px] text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-14 h-14 bg-center bg-no-repeat bg-cover rounded-full border-2 border-white dark:border-[#1a2c32] shadow-md" data-alt="Profile photo of Hanako" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6JcRj9vw7BHasbEj5ictgRP_Sl3RNwrwU3gbYqc6-xThXpEV6LWWfM6Xgd5CsSC3e0SASkyY7NyVcxlivyGDzbluNQN-IzGc_G_dwzUCcYGvxn7A9Sns9LMQDDsBSKeTZvX4prY0xROl0Ui3ktEVfQDnTw5YnRZ1lbIX71Q3oVQakI6rIlspo1unGhQy2Jj__WuFharJATQfbOEfE8PY6m4QnA-RoHda3fKZ-NyRbIxBXNOYRJWqo65iFoAgxbzDngYtUEBHkimVv");'></div>
+<span class="text-sm font-bold">花子</span>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-lg px-4 py-2 mt-2">
+<p class="text-[#60808a] dark:text-gray-400 text-sm font-medium">太郎さんが花子さんに支払う</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Unsettled Items Section -->
+<div class="flex flex-col w-full flex-1 bg-white dark:bg-[#1a2c32] rounded-t-[32px] shadow-[0_-4px_20px_rgba(0,0,0,0.05)] mt-4">
+<div class="w-12 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto mt-3 mb-1"></div>
+<h3 class="text-[#111618] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-6 py-4">未精算の項目</h3>
+<div class="flex flex-col px-4 pb-24 gap-3">
+<!-- Item 1 -->
+<div class="flex items-center justify-between gap-4 rounded-xl bg-background-light dark:bg-background-dark p-4">
+<div class="flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e3eef2] dark:bg-[#25383f] text-[#1d8cd7]">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">週末の食材買い出し</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs font-normal leading-normal">10月24日 • 花子支払</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">¥5,400</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs">折半</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between gap-4 rounded-xl bg-background-light dark:bg-background-dark p-4">
+<div class="flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#fceceb] dark:bg-[#3f2525] text-[#e54d2e]">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">イタリアンディナー</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs font-normal leading-normal">10月23日 • 太郎支払</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">¥12,000</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs">6:4</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between gap-4 rounded-xl bg-background-light dark:bg-background-dark p-4">
+<div class="flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#e8f7f0] dark:bg-[#253f30] text-[#0e8a4a]">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">水道代 9月分</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs font-normal leading-normal">10月20日 • 花子支払</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">¥4,200</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs">折半</p>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between gap-4 rounded-xl bg-background-light dark:bg-background-dark p-4">
+<div class="flex items-center gap-4">
+<div class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#f2e6ff] dark:bg-[#34253f] text-[#8e4ec6]">
+<span class="material-symbols-outlined">wifi</span>
+</div>
+<div class="flex flex-col">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">インターネット代</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs font-normal leading-normal">10月15日 • 花子支払</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[#111618] dark:text-white text-base font-bold leading-tight">¥4,800</p>
+<p class="text-[#60808a] dark:text-gray-400 text-xs">折半</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button Area -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white to-transparent dark:from-[#1a2c32] dark:via-[#1a2c32] pt-8">
+<button class="w-full flex items-center justify-center gap-2 rounded-full bg-primary text-white h-14 font-bold text-base shadow-lg hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined">check_circle</span>
+                精算を実行する
+            </button>
+</div>
+</div>
+</body></html>

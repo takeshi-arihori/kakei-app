@@ -1,0 +1,90 @@
+// Use DBML to define your database structure
+// Docs: https://dbdiagram.io/d
+
+Project HouseholdApp {
+  database_type: 'PostgreSQL'
+  Note: '家計管理アプリ MVP Database Schema'
+}
+
+// ----------------------------------
+// Tables
+// ----------------------------------
+
+Table profiles {
+  id uuid [pk, note: 'Supabase Auth.uid() と同期']
+  display_name varchar [not null]
+  avatar_url varchar
+  created_at timestamp [default: \`now()\`]
+
+  Note: 'ユーザー基本情報'
+}
+
+Table households {
+  id uuid [pk, default: \`gen_random_uuid()\`]
+  name varchar [not null, default: 'My Household']
+  invite_code varchar [unique, not null, note: '招待用コード']
+  created_at timestamp [default: \`now()\`]
+
+  Note: '家計グループ。MVPでは1つだけ'
+}
+
+Table household_members {
+  household_id uuid [ref: > households.id]
+  user_id uuid [ref: > profiles.id]
+  role varchar [not null, default: 'MEMBER', note: 'ADMIN | MEMBER']
+  joined_at timestamp [default: \`now()\`]
+
+  indexes {
+    (household_id, user_id) [pk]
+  }
+  Note: 'ユーザーと家計の紐付け（中間テーブル）'
+}
+
+Table transactions {
+  id uuid [pk, default: \`gen_random_uuid()\`]
+  household_id uuid [not null, ref: > households.id]
+  payer_id uuid [not null, ref: > profiles.id, note: '実際に払った人']
+  
+  amount integer [not null, note: '支払総額（整数）']
+  transaction_date date [not null]
+  category varchar [not null, note: '食費, 日用品, etc']
+  description text
+  
+  // 割り勘ロジックの中核
+  split_type varchar [not null, note: 'EQUAL | PERSONAL | CUSTOM']
+  split_details jsonb [note: '負担詳細 {userId: amount}']
+  
+  // 精算ステータス管理
+  settlement_id uuid [ref: > settlements.id, note: 'NULLなら未精算']
+  
+  created_at timestamp [default: \`now()\`]
+  updated_at timestamp [default: \`now()\`]
+
+  Note: '支出記録。すべての計算の元データ'
+}
+
+Table settlements {
+  id uuid [pk, default: \`gen_random_uuid()\`]
+  household_id uuid [not null, ref: > households.id]
+  
+  from_user_id uuid [not null, ref: > profiles.id, note: '精算金を支払う側']
+  to_user_id uuid [not null, ref: > profiles.id, note: '精算金を受け取る側']
+  amount integer [not null, note: '精算額']
+  
+  period_start date [note: '精算対象期間（参考）']
+  period_end date [note: '精算対象期間（参考）']
+  
+  created_at timestamp [default: \`now()\`]
+
+  Note: '精算履歴。確定した貸借の記録'
+}
+
+// ----------------------------------
+// Enums (Reference)
+// ----------------------------------
+
+Enum SplitType {
+  EQUAL    // 割り勘 (50:50)
+  PERSONAL // 個人支出 (100:0)
+  CUSTOM   // 比率指定
+}

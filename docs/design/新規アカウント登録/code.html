@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>新規アカウント登録</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"],
+                        "body": ["Noto Sans JP", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom checkbox style to match mint theme */
+        input[type="checkbox"]:checked {
+            background-color: #0df280;
+            border-color: #0df280;
+            color: #0df280; /* For the checkmark */
+        }
+        input[type="checkbox"]:focus {
+            ring-color: #0df280; /* For focus ring */
+            --tw-ring-color: #0df280;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#111814] dark:text-white">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-[480px] mx-auto bg-white dark:bg-[#182620] shadow-sm">
+<!-- Top App Bar -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 z-10 bg-white dark:bg-[#182620]">
+<div class="text-[#111814] dark:text-white flex size-12 shrink-0 items-center justify-center cursor-pointer hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-[#111814] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">
+                新規アカウント登録
+            </h2>
+</div>
+<div class="flex-1 overflow-y-auto px-4 py-2">
+<!-- Description/Welcome text (Optional but good for UX) -->
+<div class="py-4">
+<p class="text-[#608a75] dark:text-[#a0c2b0] text-sm text-center">
+                    家計簿アプリへようこそ。<br/>必要な情報を入力してアカウントを作成してください。
+                </p>
+</div>
+<!-- Form Fields Container -->
+<div class="flex flex-col gap-5">
+<!-- Display Name -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111814] dark:text-white text-sm font-medium leading-normal">
+                        表示名
+                    </label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111814] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe6e0] dark:border-[#2a3c32] bg-white dark:bg-[#1e2e26] focus:border-primary h-14 placeholder:text-[#608a75] dark:placeholder:text-[#4a6b5a] px-4 text-base font-normal leading-normal transition-all" placeholder="例：タロウ" type="text"/>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111814] dark:text-white text-sm font-medium leading-normal">
+                        メールアドレス
+                    </label>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111814] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe6e0] dark:border-[#2a3c32] bg-white dark:bg-[#1e2e26] focus:border-primary h-14 placeholder:text-[#608a75] dark:placeholder:text-[#4a6b5a] px-4 text-base font-normal leading-normal transition-all" placeholder="example@email.com" type="email"/>
+</div>
+<!-- Password -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111814] dark:text-white text-sm font-medium leading-normal">
+                        パスワード
+                    </label>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111814] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe6e0] dark:border-[#2a3c32] bg-white dark:bg-[#1e2e26] focus:border-primary h-14 placeholder:text-[#608a75] dark:placeholder:text-[#4a6b5a] px-4 pr-12 text-base font-normal leading-normal transition-all" placeholder="8文字以上の英数字" type="password"/>
+<button class="absolute right-0 top-0 h-full px-4 text-[#608a75] hover:text-[#111814] dark:hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Password Confirmation -->
+<div class="flex flex-col gap-1.5">
+<label class="text-[#111814] dark:text-white text-sm font-medium leading-normal">
+                        パスワード（確認）
+                    </label>
+<div class="relative">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111814] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe6e0] dark:border-[#2a3c32] bg-white dark:bg-[#1e2e26] focus:border-primary h-14 placeholder:text-[#608a75] dark:placeholder:text-[#4a6b5a] px-4 pr-12 text-base font-normal leading-normal transition-all" placeholder="もう一度入力してください" type="password"/>
+<button class="absolute right-0 top-0 h-full px-4 text-[#608a75] hover:text-[#111814] dark:hover:text-white transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Terms of Service Checkbox -->
+<div class="flex items-start gap-3 py-2">
+<div class="flex h-6 items-center">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary dark:border-[#2a3c32] dark:bg-[#1e2e26] cursor-pointer" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="text-sm leading-6">
+<label class="font-medium text-[#111814] dark:text-white" for="terms">
+<a class="text-primary hover:underline font-bold" href="#">利用規約</a> と <a class="text-primary hover:underline font-bold" href="#">プライバシーポリシー</a> に同意します
+                        </label>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Bottom Button Area -->
+<div class="p-4 bg-white dark:bg-[#182620] mt-auto">
+<button class="flex w-full min-w-0 cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-primary text-[#102219] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0be075] active:scale-[0.98] transition-all shadow-sm">
+<span class="truncate">登録してはじめる</span>
+</button>
+<div class="h-5 bg-white dark:bg-[#182620]"></div> <!-- Bottom spacer for iOS Home Indicator -->
+</div>
+</div>
+</body></html>
