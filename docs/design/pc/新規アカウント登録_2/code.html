@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>デスクトップ ログイン画面</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6", // Changed to blue for "prominent blue button"
+                        "primary-hover": "#2563eb",
+                        "background-light": "#f3f4f6", // Light gray background
+                        "background-dark": "#111827",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"],
+                        "body": ["Noto Sans JP", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-[#1f2937] dark:text-gray-100 min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-[440px] bg-white dark:bg-[#1f2937] rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700">
+<div class="px-8 py-10 sm:px-10 sm:py-12 flex flex-col items-center">
+<div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-900/30 text-primary">
+<span class="material-symbols-outlined text-[32px]">account_balance_wallet</span>
+</div>
+<h1 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">おかえりなさい</h1>
+<p class="mb-8 text-sm text-gray-500 dark:text-gray-400 text-center">
+                家計簿アプリにログインして、<br/>二人の家計を管理しましょう。
+            </p>
+<form class="w-full space-y-5">
+<div class="space-y-1.5">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">
+                        メールアドレス
+                    </label>
+<input class="form-input block w-full rounded-xl border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary focus:ring-primary h-12 px-4 transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" id="email" placeholder="example@email.com" required="" type="email"/>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="password">
+                            パスワード
+                        </label>
+<a class="text-xs font-medium text-primary hover:text-primary-hover hover:underline transition-colors" href="#">
+                            パスワードを忘れた場合
+                        </a>
+</div>
+<div class="relative">
+<input class="form-input block w-full rounded-xl border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:border-primary focus:ring-primary h-12 px-4 pr-10 transition-colors placeholder:text-gray-400 dark:placeholder:text-gray-500" id="password" placeholder="パスワードを入力" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<button class="w-full rounded-xl bg-primary py-3 text-base font-bold text-white shadow-md hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all active:scale-[0.98]" type="submit">
+                    ログイン
+                </button>
+</form>
+<div class="mt-8 text-center text-sm">
+<span class="text-gray-500 dark:text-gray-400">アカウントをお持ちでないですか？</span>
+<a class="ml-1 font-bold text-primary hover:text-primary-hover hover:underline transition-colors" href="#">
+                    新規登録はこちら
+                </a>
+</div>
+</div>
+</div>
+<div class="fixed bottom-4 text-xs text-gray-400 dark:text-gray-600">
+        © 2024 Household Budget App. Secure &amp; Private.
+    </div>
+
+</body></html>

@@ -5,70 +5,71 @@ MVP開発における「実用的なDDD（Pragmatic DDD）」と「機能単位�
 ## ディレクトリ構造
 
 ```
-app/
-├── (auth)/                  # 認証関連ルート (Group Route)
-│   ├── login/
-│   │   └── page.tsx
-│   └── register/
-│       └── page.tsx
-├── (dashboard)/             # ログイン後のメイン機能 (Sidebar/Header共有)
-│   ├── layout.tsx           # Dashboard Layout (Auth Guard含む)
-│   ├── page.tsx             # ダッシュボード (サマリー表示)
-│   ├── transactions/        # 支出管理機能
-│   │   └── page.tsx
-│   ├── settlements/         # 精算機能
-│   │   └── page.tsx
-│   └── settings/            # 設定 (プロファイル・家計)
-│       └── page.tsx
-├── api/                     # Route Handlers
-│   └── export/              # CSVダウンロード用など
-├── layout.tsx               # Root Layout
-└── globals.css
-
-components/
-├── ui/                      # 汎用UI (Button, Input, Card - shadcn/ui想定)
-└── layouts/                 # アプリケーション固有のレイアウト部品 (Sidebar, Header)
-
-features/                    # ★ 機能単位の分割 (Vertical Slices)
-├── auth/                    # 認証機能
-│   ├── components/          # AuthFormなど
-│   └── actions.ts           # Server Actions (Login, Logout)
+src/
+├── app/                     # Next.js App Router
+│   ├── (auth)/              # 認証関連ルート (Group Route)
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   └── register/
+│   │       └── page.tsx
+│   ├── (dashboard)/         # ログイン後のメイン機能 (Sidebar/Header共有)
+│   │   ├── layout.tsx       # Dashboard Layout (Auth Guard含む)
+│   │   ├── page.tsx         # ダッシュボード (サマリー表示)
+│   │   ├── transactions/    # 支出管理機能
+│   │   │   └── page.tsx
+│   │   ├── settlements/     # 精算機能
+│   │   │   └── page.tsx
+│   │   └── settings/        # 設定 (プロファイル・家計)
+│   │       └── page.tsx
+│   ├── api/                 # Route Handlers
+│   │   └── export/          # CSVダウンロード用など
+│   ├── layout.tsx           # Root Layout
+│   └── globals.css
 │
-├── household/               # 家計管理・招待機能
-│   ├── components/
-│   └── actions.ts           # createHousehold, joinHousehold
+├── components/
+│   ├── ui/                  # 汎用UI (Button, Input, Card - shadcn/ui想定)
+│   └── layouts/             # アプリケーション固有のレイアウト部品 (Sidebar, Header)
 │
-├── transactions/            # 支出記録機能 (CRUD中心)
-│   ├── components/
-│   │   ├── transaction-form.tsx
-│   │   ├── transaction-list.tsx
-│   │   └── filter-bar.tsx
-│   ├── schemas.ts           # Zod Schema (Form Validation)
-│   ├── actions.ts           # Server Actions (DB Insert/Update)
-│   └── utils.ts             # 通貨表示フォーマットなどのViewロジック
+├── features/                # ★ 機能単位の分割 (Vertical Slices)
+│   ├── auth/                # 認証機能
+│   │   ├── components/      # AuthFormなど
+│   │   └── actions.ts       # Server Actions (Login, Logout)
+│   │
+│   ├── household/           # 家計管理・招待機能
+│   │   ├── components/
+│   │   └── actions.ts       # createHousehold, joinHousehold
+│   │
+│   ├── transactions/        # 支出記録機能 (CRUD中心)
+│   │   ├── components/
+│   │   │   ├── transaction-form.tsx
+│   │   │   ├── transaction-list.tsx
+│   │   │   └── filter-bar.tsx
+│   │   ├── schemas.ts       # Zod Schema (Form Validation)
+│   │   ├── actions.ts       # Server Actions (DB Insert/Update)
+│   │   └── utils.ts         # 通貨表示フォーマットなどのViewロジック
+│   │
+│   ├── settlement/          # ★ 精算機能 (DDD戦術的設計を適用)
+│   │   ├── domain/          # ドメイン層: 外部依存のない純粋なロジック
+│   │   │   ├── calculator.ts    # 割り勘計算アルゴリズム (Core Logic)
+│   │   │   ├── rules.ts         # 3つの財布・配分ルールの定義
+│   │   │   └── calculator.test.ts # ロジックの単体テスト
+│   │   ├── components/      # UI: 精算プレビュー、履歴表示
+│   │   └── actions.ts       # Application Service: 計算結果をDBに永続化
+│   │
+│   └── ocr/                 # レシートOCR機能
+│       ├── components/
+│       │   └── receipt-camera.tsx
+│       └── worker/          # Tesseract.js Web Worker (Client-side)
 │
-├── settlement/              # ★ 精算機能 (DDD戦術的設計を適用)
-│   ├── domain/              # ドメイン層: 外部依存のない純粋なロジック
-│   │   ├── calculator.ts    # 割り勘計算アルゴリズム (Core Logic)
-│   │   ├── rules.ts         # 3つの財布・配分ルールの定義
-│   │   └── calculator.test.ts # ロジックの単体テスト
-│   ├── components/          # UI: 精算プレビュー、履歴表示
-│   └── actions.ts           # Application Service: 計算結果をDBに永続化
+├── lib/
+│   ├── supabase/
+│   │   ├── server.ts        # Server Component / Action 用クライアント
+│   │   └── client.ts        # Client Component 用クライアント
+│   ├── database.types.ts    # ★ Supabase CLIで自動生成 (手動編集禁止)
+│   └── utils.ts             # 共通ユーティリティ (cn, tailwind-merge)
 │
-└── ocr/                     # レシートOCR機能
-    ├── components/
-    │   └── receipt-camera.tsx
-    └── worker/              # Tesseract.js Web Worker (Client-side)
-
-lib/
-├── supabase/
-│   ├── server.ts            # Server Component / Action 用クライアント
-│   └── client.ts            # Client Component 用クライアント
-├── database.types.ts        # ★ Supabase CLIで自動生成 (手動編集禁止)
-└── utils.ts                 # 共通ユーティリティ (cn, tailwind-merge)
-
-hooks/                       # アプリケーション全体のHooks
-└── use-toast.ts             # 通知用
+└── hooks/                   # アプリケーション全体のHooks
+    └── use-toast.ts         # 通知用
 ```
 
 ## 設計のポイント

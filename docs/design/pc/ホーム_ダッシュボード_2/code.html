@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>デスクトップ レシート読み取り・確認</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "primary-dark": "#0a9acb",
+                        "secondary": "#2dd4bf", 
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#18282e",
+                        "text-primary-light": "#111618",
+                        "text-primary-dark": "#f0f5f7",
+                        "text-secondary-light": "#637588",
+                        "text-secondary-dark": "#9aaab5",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans JP", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .receipt-ocr-highlight {
+            background-color: rgba(13, 185, 242, 0.2);
+            border: 2px solid #0db9f2;
+            position: absolute;
+            border-radius: 4px;
+        }.sidebar-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass-panel {
+            background: rgba(24, 40, 46, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-text-primary-light dark:text-text-primary-dark overflow-hidden h-screen flex">
+<aside class="w-64 bg-surface-dark text-white flex flex-col h-full shrink-0 border-r border-white/10 shadow-xl z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">account_balance_wallet</span>
+</div>
+<h1 class="font-bold text-lg tracking-wide">FamilyBud</h1>
+</div>
+<div class="px-4 py-2">
+<button class="w-full bg-primary hover:bg-primary-dark text-white rounded-lg p-3 flex items-center justify-center gap-2 transition font-bold shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+<span>支出を記録</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto sidebar-scroll px-4 py-6 flex flex-col gap-6">
+<div>
+<p class="text-xs font-bold text-text-secondary-dark uppercase tracking-wider mb-3 px-2">ダッシュボード</p>
+<ul class="flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition text-sm font-medium text-gray-300 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+                            ホーム
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition text-sm font-medium text-gray-300 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">pie_chart</span>
+                            分析レポート
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-white/10 text-white transition text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary">receipt_long</span>
+                            レシート読取
+                        </a>
+</li>
+</ul>
+</div>
+<div>
+<p class="text-xs font-bold text-text-secondary-dark uppercase tracking-wider mb-3 px-2">ウォレット管理</p>
+<ul class="flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition text-sm font-medium text-gray-300 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+                            自分 (Me)
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition text-sm font-medium text-gray-300 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+                            パートナー (Partner)
+                        </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/10 transition text-sm font-medium text-gray-300 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                            共有 (Shared)
+                        </a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="p-4 border-t border-white/10">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/10 transition" href="#">
+<img alt="User" class="size-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTLFExw4Cap8Yvgqyk1PfG2nELfdhp2uuOuuynvpdU4sH3QW9SqAF-6Akne3oBqeKhMOv81ZQQiyVSLc3_SibZce0raQPN0HaFrasWZRClUB_Al8P3Pug7Io_3CzIjJSHFSFFMzohf9J47TxLwS1ElsyKCXkX3Me-SGx01TGQt2dNMEsqEN1v-aD5c_gSZOctkCLGSVtyRkt4wIFhPuOmTbYxNSfZfL7S6HYkP_TxONgtswChlpS8ugEQe0CTPzkqBW7dsm7KLhET_"/>
+<div class="flex flex-col">
+<span class="text-sm font-medium">Hiroto K.</span>
+<span class="text-xs text-text-secondary-dark">設定・ログアウト</span>
+</div>
+</a>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-gradient-to-br from-background-light to-blue-50 dark:from-background-dark dark:to-surface-dark relative">
+<header class="h-16 flex items-center justify-between px-8 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm border-b border-gray-200 dark:border-white/5 z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-bold">レシートスキャン結果確認</h2>
+<span class="px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">スキャン完了</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-medium text-text-secondary-light hover:text-primary transition flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">help</span>
+                    ヘルプ
+                </button>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden p-6 gap-6">
+<div class="flex-1 bg-gray-900 rounded-2xl overflow-hidden relative shadow-inner group border border-gray-200 dark:border-white/10 flex flex-col">
+<div class="absolute top-4 left-4 right-4 z-10 flex justify-between items-start pointer-events-none">
+<span class="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur text-white text-xs font-medium border border-white/10 shadow-lg">
+                        IMG_20231024.jpg
+                     </span>
+</div>
+<div class="flex-1 relative overflow-hidden flex items-center justify-center bg-[#1a1a1a]">
+<div class="relative max-h-full max-w-full transform transition-transform duration-300">
+<img alt="Scanned Receipt" class="max-h-[calc(100vh-160px)] object-contain opacity-90 shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbZN8vA7PjRpAxbFb7KNqTP4MammCIs4h20z1fL6XHsgbruUcN-4VQz7m5A5kuX0kptQ67Ee1N1EgtU-CD-FtBP9NgNELK-7HB3U_Umf9-dEPOyJcnc-IJFysAsoyF9EvkoEXD3drHprW09ihN5rC6hZ0Sf93d0WohTOFm5gSIkz7Oku4TfcbEsnvwAnqJ7LHsAeV_DTrEDt5KdKd-X28TIZlMB9bvvBPIBUsh9qGVUPYpHa8_fS0JUy6ZA5vc3e1LibLDO9eTYPnP"/>
+<div class="receipt-ocr-highlight" style="top: 25%; left: 30%; width: 40%; height: 5%;"></div> 
+<div class="receipt-ocr-highlight" style="top: 35%; left: 70%; width: 20%; height: 4%;"></div> 
+<div class="receipt-ocr-highlight" style="top: 60%; left: 60%; width: 30%; height: 6%;"></div> 
+</div>
+</div>
+<div class="h-14 bg-surface-dark/90 backdrop-blur flex items-center justify-center gap-4 border-t border-white/10 z-10">
+<button class="p-2 rounded-full hover:bg-white/10 text-white transition tooltip" title="Zoom Out">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="p-2 rounded-full hover:bg-white/10 text-white transition tooltip" title="Zoom In">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-2 rounded-full hover:bg-white/10 text-white transition tooltip" title="Rotate">
+<span class="material-symbols-outlined">rotate_right</span>
+</button>
+<div class="w-px h-6 bg-white/20 mx-2"></div>
+<button class="p-2 rounded-full hover:bg-white/10 text-white transition tooltip text-sm flex items-center gap-2 px-4 bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-lg">crop</span>
+                        再撮影・調整
+                    </button>
+</div>
+</div>
+<div class="w-[420px] shrink-0 flex flex-col">
+<div class="glass-panel rounded-2xl shadow-xl flex flex-col h-full overflow-hidden">
+<div class="p-6 border-b border-gray-200 dark:border-white/10">
+<h3 class="font-bold text-lg text-text-primary-light dark:text-white mb-1">内容を確認・編集</h3>
+<p class="text-xs text-text-secondary-light">OCRで読み取った内容を確認し、必要に応じて修正してください。</p>
+</div>
+<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider">合計金額</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-light font-bold">¥</span>
+<input class="w-full bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl py-3 pl-8 pr-4 text-2xl font-bold text-text-primary-light dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition" type="number" value="3450"/>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider">店舗名</label>
+<div class="flex gap-2">
+<input class="w-full bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl p-3 font-medium text-text-primary-light dark:text-white focus:ring-2 focus:ring-primary outline-none" type="text" value="スーパーライフ 本町店"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider">日付</label>
+<input class="w-full bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl p-3 font-medium text-text-primary-light dark:text-white focus:ring-2 focus:ring-primary outline-none" type="date" value="2023-10-24"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider">カテゴリー</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="flex items-center gap-2 p-3 rounded-xl border-2 border-primary bg-primary/5 text-primary font-bold text-sm transition relative overflow-hidden">
+<span class="material-symbols-outlined">restaurant</span>
+                                    食費
+                                    <div class="absolute top-0 right-0 p-0.5 bg-primary text-white rounded-bl-lg">
+<span class="material-symbols-outlined text-[10px] font-bold block">check</span>
+</div>
+</button>
+<button class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black/20 text-text-secondary-light hover:bg-gray-50 dark:hover:bg-white/5 font-medium text-sm transition">
+<span class="material-symbols-outlined">checkroom</span>
+                                    日用品
+                                </button>
+<button class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black/20 text-text-secondary-light hover:bg-gray-50 dark:hover:bg-white/5 font-medium text-sm transition">
+<span class="material-symbols-outlined">train</span>
+                                    交通費
+                                </button>
+<button class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black/20 text-text-secondary-light hover:bg-gray-50 dark:hover:bg-white/5 font-medium text-sm transition">
+<span class="material-symbols-outlined">more_horiz</span>
+                                    その他
+                                </button>
+</div>
+</div>
+<div class="space-y-2 pt-2 border-t border-gray-200 dark:border-white/10">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider mt-2 block">支払い元ウォレット</label>
+<div class="flex flex-col gap-2">
+<label class="relative flex items-center p-3 rounded-xl border border-primary bg-primary/5 cursor-pointer transition shadow-sm">
+<input checked="" class="peer sr-only" name="wallet" type="radio"/>
+<div class="size-10 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-text-primary-light dark:text-white">共有ウォレット</p>
+<p class="text-xs text-text-secondary-light">支払いは折半されます</p>
+</div>
+<div class="size-5 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<div class="size-2 bg-white rounded-full"></div>
+</div>
+</label>
+<label class="relative flex items-center p-3 rounded-xl border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition">
+<input class="peer sr-only" name="wallet" type="radio"/>
+<div class="size-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-text-primary-light dark:text-white">自分 (Me)</p>
+<p class="text-xs text-text-secondary-light">個人の支出として記録</p>
+</div>
+<div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
+</label>
+<label class="relative flex items-center p-3 rounded-xl border border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer transition opacity-70">
+<input class="peer sr-only" name="wallet" type="radio"/>
+<div class="size-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3 shrink-0">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-text-primary-light dark:text-white">パートナー</p>
+<p class="text-xs text-text-secondary-light">立て替え払いとして記録</p>
+</div>
+<div class="size-5 rounded-full border-2 border-gray-300 dark:border-gray-600"></div>
+</label>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-xs font-bold text-text-secondary-light uppercase tracking-wider">メモ</label>
+<textarea class="w-full bg-white dark:bg-black/20 border border-gray-200 dark:border-white/10 rounded-xl p-3 text-sm text-text-primary-light dark:text-white focus:ring-2 focus:ring-primary outline-none resize-none" placeholder="詳細な内容があれば入力" rows="2"></textarea>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-surface-dark border-t border-gray-200 dark:border-white/10 flex flex-col gap-3 shrink-0 z-20 shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
+<button class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-3.5 rounded-xl shadow-lg shadow-primary/30 transition transform active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                            この内容で登録する
+                        </button>
+<button class="w-full bg-transparent hover:bg-gray-100 dark:hover:bg-white/5 text-text-secondary-light dark:text-text-secondary-dark font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 border border-transparent hover:border-gray-200 dark:hover:border-white/10">
+<span class="material-symbols-outlined">add_a_photo</span>
+                            別のレシートを読み込む
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

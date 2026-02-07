@@ -44,8 +44,9 @@ npm run start
 
 ```
 kakei-app/
-├── app/                       # Next.js App Router
-│   ├── (auth)/                # 認証関連ルート
+├── src/
+│   ├── app/                   # Next.js App Router
+│   │   ├── (auth)/            # 認証関連ルート
 │   │   ├── login/
 │   │   └── register/
 │   ├── (dashboard)/           # ダッシュボード（Auth Guard付き）
@@ -58,37 +59,37 @@ kakei-app/
 │   ├── layout.tsx             # ルートレイアウト
 │   ├── page.tsx               # ウェルカム画面
 │   └── globals.css
-├── components/                # UIコンポーネント
-│   ├── ui/                    # 汎用UI部品（shadcn/ui想定）
-│   └── layouts/               # レイアウト部品
-├── features/                  # 機能単位の実装（Vertical Slices）
-│   ├── auth/                  # 認証機能
-│   │   ├── actions.ts
-│   │   └── components/
-│   ├── household/             # 家計管理・招待
-│   │   ├── actions.ts
-│   │   └── components/
-│   ├── transactions/          # 支出記録（CRUD）
-│   │   ├── actions.ts
+│   ├── components/                # UIコンポーネント
+│   │   ├── ui/                    # 汎用UI部品（shadcn/ui想定）
+│   │   └── layouts/               # レイアウト部品
+│   ├── features/                  # 機能単位の実装（Vertical Slices）
+│   │   ├── auth/                  # 認証機能
+│   │   │   ├── actions.ts
+│   │   │   └── components/
+│   │   ├── household/             # 家計管理・招待
+│   │   │   ├── actions.ts
+│   │   │   └── components/
+│   │   ├── transactions/          # 支出記録（CRUD）
+│   │   │   ├── actions.ts
 │   │   ├── schemas.ts
 │   │   ├── utils.ts
-│   │   └── components/
-│   ├── settlement/            # 精算機能（DDD適用）
-│   │   ├── domain/            # ドメインロジック（Pure TypeScript）
-│   │   │   ├── calculator.ts
-│   │   │   └── rules.ts
-│   │   ├── actions.ts
-│   │   └── components/
-│   └── ocr/                   # レシートOCR
-│       ├── components/
-│       └── worker/
-├── lib/                       # 共通ライブラリ
-│   ├── supabase/
-│   │   ├── server.ts          # Server Component/Action用
-│   │   └── client.ts          # Client Component用
-│   └── utils.ts               # cn, formatCurrency等
-├── hooks/                     # カスタムフック
-└── docs/                      # ドキュメント
+│   │   │   └── components/
+│   │   ├── settlement/            # 精算機能（DDD適用）
+│   │   │   ├── domain/            # ドメインロジック（Pure TypeScript）
+│   │   │   │   ├── calculator.ts
+│   │   │   │   └── rules.ts
+│   │   │   ├── actions.ts
+│   │   │   └── components/
+│   │   └── ocr/                   # レシートOCR
+│   │       ├── components/
+│   │       └── worker/
+│   ├── lib/                       # 共通ライブラリ
+│   │   ├── supabase/
+│   │   │   ├── server.ts          # Server Component/Action用
+│   │   │   └── client.ts          # Client Component用
+│   │   └── utils.ts               # cn, formatCurrency等
+│   └── hooks/                     # カスタムフック
+├── docs/                      # ドキュメント
     ├── architecture.md        # アーキテクチャ設計
     ├── requirements.md        # 要件定義書
     ├── schema.dbml            # データベーススキーマ

@@ -61,35 +61,36 @@ npm run lint     # ESLint実行
 
 ```
 kakei-app/
-├── app/                       # Next.js App Router
-│   ├── (auth)/                # 認証関連ルート
-│   │   ├── login/
-│   │   └── register/
-│   ├── (dashboard)/           # ダッシュボード（Auth Guard付き）
+├── src/
+│   ├── app/                   # Next.js App Router
+│   │   ├── (auth)/            # 認証関連ルート
+│   │   │   ├── login/
+│   │   │   └── register/
+│   │   ├── (dashboard)/           # ダッシュボード（Auth Guard付き）
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── transactions/      # 支出管理
+│   │   │   ├── settlements/       # 精算管理
+│   │   │   └── settings/          # 設定
+│   │   ├── api/                   # API Routes
 │   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   ├── transactions/      # 支出管理
-│   │   ├── settlements/       # 精算管理
-│   │   └── settings/          # 設定
-│   ├── api/                   # API Routes
-│   ├── layout.tsx
-│   ├── page.tsx               # ウェルカム画面
-│   └── globals.css
-├── components/                # UIコンポーネント
-│   ├── ui/                    # 汎用UI部品
-│   └── layouts/               # レイアウト部品
-├── features/                  # 機能単位の実装（Vertical Slices）
-│   ├── auth/                  # 認証機能
-│   ├── household/             # 家計管理・招待
-│   ├── transactions/          # 支出記録
-│   ├── settlement/            # 精算機能（DDD適用）
-│   │   └── domain/            # ドメインロジック
-│   └── ocr/                   # レシートOCR
-├── lib/                       # 共通ライブラリ
-│   ├── supabase/              # Supabaseクライアント
-│   └── utils.ts               # ユーティリティ
-├── hooks/                     # カスタムフック
-└── docs/                      # ドキュメント
+│   │   ├── page.tsx               # ウェルカム画面
+│   │   └── globals.css
+│   ├── components/                # UIコンポーネント
+│   │   ├── ui/                    # 汎用UI部品
+│   │   └── layouts/               # レイアウト部品
+│   ├── features/                  # 機能単位の実装（Vertical Slices）
+│   │   ├── auth/                  # 認証機能
+│   │   ├── household/             # 家計管理・招待
+│   │   ├── transactions/          # 支出記録
+│   │   ├── settlement/            # 精算機能（DDD適用）
+│   │   │   └── domain/            # ドメインロジック
+│   │   └── ocr/                   # レシートOCR
+│   ├── lib/                       # 共通ライブラリ
+│   │   ├── supabase/              # Supabaseクライアント
+│   │   └── utils.ts               # ユーティリティ
+│   └── hooks/                     # カスタムフック
+├── docs/                      # ドキュメント
     ├── architecture.md        # アーキテクチャ設計
     ├── requirements.md        # 要件定義書
     └── design/                # UIモックアップ

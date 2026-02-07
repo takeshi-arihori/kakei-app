@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>デスクトップ 精算管理 (詳細表示)</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: 100vh;
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111618] dark:text-white overflow-hidden">
+<div class="flex h-screen w-full">
+<div class="hidden md:flex flex-col w-64 h-full bg-white dark:bg-[#1a2c32] border-r border-[#e6e8e8] dark:border-gray-700 shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">account_balance_wallet</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-[#111618] dark:text-white">CoupleBudget</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-[#60808a] dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">home</span>
+<span class="font-medium">ホーム</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#60808a] dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">receipt_long</span>
+<span class="font-medium">家計簿</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg" href="#">
+<span class="material-symbols-outlined fill-1">currency_yen</span>
+<span class="font-bold">精算</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#60808a] dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">pie_chart</span>
+<span class="font-medium">分析</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#60808a] dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span class="font-medium">設定</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#e6e8e8] dark:border-gray-700">
+<div class="flex items-center gap-3 px-2">
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrQk5CXnPWufZmwTNbg3FwHJ9Bdrf7Ho94XI4dGCkl41Ty5J15s2jGSqRjY_pUuTzJLgVdlCV4CMCq_El6sxMipjHwdUfLplhNd6pnaVzmovmlp67Pkd5DcNzoqgm4hGrs8nzZVCZdiltCRE7bj6iaVcUN4-mVgUw5pc2qR7toIA-lOIohQuB-uatjn_iffrGHoSw5XLaFUvmnNq63FqUZ6NHxjL2YEhscmUlGWc8VlU35d5tPWn3xyd0m3OVcV-diJM-0C6F_vrgg");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#111618] dark:text-white">太郎</span>
+<span class="text-xs text-[#60808a] dark:text-gray-400">ログアウト</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-16 bg-white dark:bg-[#1a2c32] border-b border-[#e6e8e8] dark:border-gray-700 flex items-center justify-between px-8 shrink-0">
+<h2 class="text-xl font-bold text-[#111618] dark:text-white">精算管理</h2>
+<button class="flex items-center gap-2 text-primary hover:text-primary/80 font-bold text-sm px-4 py-2 rounded-lg hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                    精算履歴を見る
+                </button>
+</header>
+<main class="flex-1 overflow-hidden p-8 flex flex-col lg:flex-row gap-8 max-w-[1600px] mx-auto w-full">
+<div class="w-full lg:w-[400px] xl:w-[480px] shrink-0 flex flex-col gap-6">
+<div class="bg-white dark:bg-[#1a2c32] rounded-2xl shadow-sm border border-[#e6e8e8] dark:border-gray-700 p-8 flex flex-col items-center">
+<p class="text-[#60808a] dark:text-gray-400 text-sm font-medium mb-2">今回の精算額</p>
+<h1 class="text-5xl font-bold text-[#111618] dark:text-white tracking-tight mb-8">¥15,000</h1>
+<div class="w-full bg-background-light dark:bg-background-dark rounded-xl p-6 mb-6">
+<div class="flex items-center justify-between gap-4">
+<div class="flex flex-col items-center gap-3">
+<div class="relative">
+<div class="w-20 h-20 bg-center bg-no-repeat bg-cover rounded-full border-4 border-white dark:border-[#1a2c32] shadow-md" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrQk5CXnPWufZmwTNbg3FwHJ9Bdrf7Ho94XI4dGCkl41Ty5J15s2jGSqRjY_pUuTzJLgVdlCV4CMCq_El6sxMipjHwdUfLplhNd6pnaVzmovmlp67Pkd5DcNzoqgm4hGrs8nzZVCZdiltCRE7bj6iaVcUN4-mVgUw5pc2qR7toIA-lOIohQuB-uatjn_iffrGHoSw5XLaFUvmnNq63FqUZ6NHxjL2YEhscmUlGWc8VlU35d5tPWn3xyd0m3OVcV-diJM-0C6F_vrgg");'></div>
+<div class="absolute -bottom-1 -right-1 bg-[#1a2c32] dark:bg-white text-white dark:text-[#1a2c32] rounded-full p-1 border-2 border-white dark:border-[#1a2c32]">
+<span class="material-symbols-outlined text-[16px] block">arrow_outward</span>
+</div>
+</div>
+<span class="font-bold text-lg">太郎</span>
+</div>
+<div class="flex-1 flex flex-col items-center px-4 -mt-6">
+<span class="text-xs font-bold text-[#60808a] dark:text-gray-400 mb-2">支払う</span>
+<div class="w-full h-[2px] bg-gray-200 dark:bg-gray-600 relative">
+<div class="absolute inset-0 bg-primary/50 animate-[shimmer_2s_infinite] w-1/2"></div>
+<div class="absolute right-0 -top-[10px] text-gray-300 dark:text-gray-500">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center gap-3">
+<div class="w-20 h-20 bg-center bg-no-repeat bg-cover rounded-full border-4 border-white dark:border-[#1a2c32] shadow-md opacity-60 grayscale-[30%]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6JcRj9vw7BHasbEj5ictgRP_Sl3RNwrwU3gbYqc6-xThXpEV6LWWfM6Xgd5CsSC3e0SASkyY7NyVcxlivyGDzbluNQN-IzGc_G_dwzUCcYGvxn7A9Sns9LMQDDsBSKeTZvX4prY0xROl0Ui3ktEVfQDnTw5YnRZ1lbIX71Q3oVQakI6rIlspo1unGhQy2Jj__WuFharJATQfbOEfE8PY6m4QnA-RoHda3fKZ-NyRbIxBXNOYRJWqo65iFoAgxbzDngYtUEBHkimVv");'></div>
+<span class="font-bold text-lg text-gray-500">花子</span>
+</div>
+</div>
+<div class="mt-6 text-center">
+<p class="text-sm text-[#60808a] dark:text-gray-400">
+<strong class="text-[#111618] dark:text-white">太郎</strong>さんが<strong class="text-[#111618] dark:text-white">花子</strong>さんに支払うことで、<br/>全ての立替分が精算されます。
+                                </p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-3 rounded-xl bg-primary hover:bg-primary/90 text-white h-14 font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+<span class="material-symbols-outlined">check_circle</span>
+                            精算を実行する
+                        </button>
+</div>
+<div class="bg-white dark:bg-[#1a2c32] rounded-xl shadow-sm border border-[#e6e8e8] dark:border-gray-700 p-6">
+<h3 class="font-bold text-[#111618] dark:text-white mb-4">内訳サマリー</h3>
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-[#60808a] dark:text-gray-400">太郎の立替合計</span>
+<span class="font-medium">¥12,000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-[#60808a] dark:text-gray-400">花子の立替合計</span>
+<span class="font-medium">¥14,400</span>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-700 my-2"></div>
+<div class="flex justify-between text-sm font-bold">
+<span class="text-[#111618] dark:text-white">差額</span>
+<span class="text-primary">¥2,400 (÷2 = ¥1,200)</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col h-full bg-white dark:bg-[#1a2c32] rounded-2xl shadow-sm border border-[#e6e8e8] dark:border-gray-700 overflow-hidden">
+<div class="p-6 border-b border-[#e6e8e8] dark:border-gray-700 flex justify-between items-center bg-white dark:bg-[#1a2c32] z-10">
+<h3 class="text-lg font-bold text-[#111618] dark:text-white flex items-center gap-2">
+                            未精算の項目
+                            <span class="bg-gray-100 dark:bg-gray-700 text-xs px-2 py-0.5 rounded-full text-[#60808a] dark:text-gray-400">4件</span>
+</h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-[#60808a]">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-[#60808a]">
+<span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 scroll-smooth">
+<div class="grid grid-cols-1 gap-4">
+<div class="group flex items-center justify-between gap-6 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-600 bg-background-light dark:bg-background-dark p-5 transition-all hover:bg-white dark:hover:bg-[#20343b] hover:shadow-md">
+<div class="flex items-center gap-5 flex-1">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#25383f] text-[#1d8cd7] shadow-sm">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-[#111618] dark:text-white text-lg font-bold leading-tight truncate group-hover:text-primary transition-colors">週末の食材買い出し</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[#60808a] dark:text-gray-400 text-sm font-medium">10月24日</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<div class="flex items-center gap-1">
+<div class="w-4 h-4 rounded-full bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6JcRj9vw7BHasbEj5ictgRP_Sl3RNwrwU3gbYqc6-xThXpEV6LWWfM6Xgd5CsSC3e0SASkyY7NyVcxlivyGDzbluNQN-IzGc_G_dwzUCcYGvxn7A9Sns9LMQDDsBSKeTZvX4prY0xROl0Ui3ktEVfQDnTw5YnRZ1lbIX71Q3oVQakI6rIlspo1unGhQy2Jj__WuFharJATQfbOEfE8PY6m4QnA-RoHda3fKZ-NyRbIxBXNOYRJWqo65iFoAgxbzDngYtUEBHkimVv");'></div>
+<span class="text-[#60808a] dark:text-gray-400 text-sm">花子支払</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-xs text-[#60808a] dark:text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700 mb-1">折半 (50:50)</span>
+<p class="text-[#111618] dark:text-white text-xl font-bold leading-tight tracking-tight">¥5,400</p>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-400 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group flex items-center justify-between gap-6 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-600 bg-background-light dark:bg-background-dark p-5 transition-all hover:bg-white dark:hover:bg-[#20343b] hover:shadow-md">
+<div class="flex items-center gap-5 flex-1">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#3f2525] text-[#e54d2e] shadow-sm">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-[#111618] dark:text-white text-lg font-bold leading-tight truncate group-hover:text-primary transition-colors">イタリアンディナー</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[#60808a] dark:text-gray-400 text-sm font-medium">10月23日</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<div class="flex items-center gap-1">
+<div class="w-4 h-4 rounded-full bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrQk5CXnPWufZmwTNbg3FwHJ9Bdrf7Ho94XI4dGCkl41Ty5J15s2jGSqRjY_pUuTzJLgVdlCV4CMCq_El6sxMipjHwdUfLplhNd6pnaVzmovmlp67Pkd5DcNzoqgm4hGrs8nzZVCZdiltCRE7bj6iaVcUN4-mVgUw5pc2qR7toIA-lOIohQuB-uatjn_iffrGHoSw5XLaFUvmnNq63FqUZ6NHxjL2YEhscmUlGWc8VlU35d5tPWn3xyd0m3OVcV-diJM-0C6F_vrgg");'></div>
+<span class="text-[#60808a] dark:text-gray-400 text-sm">太郎支払</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-xs text-[#60808a] dark:text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700 mb-1">傾斜 (60:40)</span>
+<p class="text-[#111618] dark:text-white text-xl font-bold leading-tight tracking-tight">¥12,000</p>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-400 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group flex items-center justify-between gap-6 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-600 bg-background-light dark:bg-background-dark p-5 transition-all hover:bg-white dark:hover:bg-[#20343b] hover:shadow-md">
+<div class="flex items-center gap-5 flex-1">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#253f30] text-[#0e8a4a] shadow-sm">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-[#111618] dark:text-white text-lg font-bold leading-tight truncate group-hover:text-primary transition-colors">水道代 9月分</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[#60808a] dark:text-gray-400 text-sm font-medium">10月20日</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<div class="flex items-center gap-1">
+<div class="w-4 h-4 rounded-full bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6JcRj9vw7BHasbEj5ictgRP_Sl3RNwrwU3gbYqc6-xThXpEV6LWWfM6Xgd5CsSC3e0SASkyY7NyVcxlivyGDzbluNQN-IzGc_G_dwzUCcYGvxn7A9Sns9LMQDDsBSKeTZvX4prY0xROl0Ui3ktEVfQDnTw5YnRZ1lbIX71Q3oVQakI6rIlspo1unGhQy2Jj__WuFharJATQfbOEfE8PY6m4QnA-RoHda3fKZ-NyRbIxBXNOYRJWqo65iFoAgxbzDngYtUEBHkimVv");'></div>
+<span class="text-[#60808a] dark:text-gray-400 text-sm">花子支払</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-xs text-[#60808a] dark:text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700 mb-1">折半 (50:50)</span>
+<p class="text-[#111618] dark:text-white text-xl font-bold leading-tight tracking-tight">¥4,200</p>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-400 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="group flex items-center justify-between gap-6 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-gray-600 bg-background-light dark:bg-background-dark p-5 transition-all hover:bg-white dark:hover:bg-[#20343b] hover:shadow-md">
+<div class="flex items-center gap-5 flex-1">
+<div class="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#34253f] text-[#8e4ec6] shadow-sm">
+<span class="material-symbols-outlined">wifi</span>
+</div>
+<div class="flex flex-col min-w-0">
+<p class="text-[#111618] dark:text-white text-lg font-bold leading-tight truncate group-hover:text-primary transition-colors">インターネット代</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[#60808a] dark:text-gray-400 text-sm font-medium">10月15日</span>
+<span class="w-1 h-1 rounded-full bg-gray-300"></span>
+<div class="flex items-center gap-1">
+<div class="w-4 h-4 rounded-full bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6JcRj9vw7BHasbEj5ictgRP_Sl3RNwrwU3gbYqc6-xThXpEV6LWWfM6Xgd5CsSC3e0SASkyY7NyVcxlivyGDzbluNQN-IzGc_G_dwzUCcYGvxn7A9Sns9LMQDDsBSKeTZvX4prY0xROl0Ui3ktEVfQDnTw5YnRZ1lbIX71Q3oVQakI6rIlspo1unGhQy2Jj__WuFharJATQfbOEfE8PY6m4QnA-RoHda3fKZ-NyRbIxBXNOYRJWqo65iFoAgxbzDngYtUEBHkimVv");'></div>
+<span class="text-[#60808a] dark:text-gray-400 text-sm">花子支払</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-xs text-[#60808a] dark:text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-gray-100 dark:border-gray-700 mb-1">折半 (50:50)</span>
+<p class="text-[#111618] dark:text-white text-xl font-bold leading-tight tracking-tight">¥4,800</p>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center text-gray-400 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
