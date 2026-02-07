@@ -2,102 +2,83 @@ import Link from "next/link";
 
 export default function WelcomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4 sm:p-6 md:p-8">
-      {/* Responsive Container */}
-      <div className="relative w-full max-w-md lg:max-w-lg min-h-screen sm:min-h-0 sm:h-auto flex flex-col bg-white dark:bg-gray-900 shadow-xl sm:rounded-3xl overflow-hidden">
-        {/* Header / Status Bar Area Placeholder */}
-        <div className="h-12 sm:h-16 w-full flex items-center justify-between px-6 shrink-0 z-10" />
+    <div className="flex flex-col lg:flex-row w-full min-h-screen bg-white dark:bg-[#182620]">
+      {/* Left Half - Hero Image Section (Mobile: Top 1/3, Desktop: Left 1/2) */}
+      <div className="lg:w-1/2 w-full h-[33vh] lg:h-screen relative overflow-hidden bg-gray-100">
+        {/* Placeholder for hero image - in production, replace with actual image */}
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/20 via-blue-400/10 to-purple-400/10 flex items-center justify-center">
+          <span className="material-symbols-outlined text-primary text-[120px] lg:text-[200px]">
+            account_balance_wallet
+          </span>
+        </div>
+        {/* Gradient overlay for mobile */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:hidden"></div>
+      </div>
 
-        {/* Main Content Area */}
-        <div className="flex-1 flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 pb-6 sm:pb-8 md:pb-12 w-full">
-          {/* Hero Section */}
-          <div className="w-full mb-8 sm:mb-10 md:mb-12 flex justify-center">
-            <div className="relative w-full aspect-[4/3] max-w-[320px] sm:max-w-[380px] md:max-w-[420px] rounded-2xl overflow-hidden shadow-lg">
-              {/* Decorative bg blobs */}
-              <div className="absolute top-0 right-0 w-32 sm:w-40 md:w-48 h-32 sm:h-40 md:h-48 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <div className="absolute bottom-0 left-0 w-24 sm:w-32 md:w-40 h-24 sm:h-32 md:h-40 bg-blue-400/10 rounded-full blur-xl translate-y-1/2 -translate-x-1/2" />
-
-              {/* Hero Visual */}
-              <div className="w-full h-full bg-gradient-to-br from-primary/5 to-blue-400/5 flex items-center justify-center relative z-10">
-                <div className="text-center">
-                  <span className="material-symbols-outlined text-primary text-[100px] sm:text-[120px] md:text-[140px] mb-4 block">
-                    savings
-                  </span>
-                </div>
-              </div>
+      {/* Right Half - Content Section (Mobile: Bottom 2/3, Desktop: Right 1/2) */}
+      <div className="lg:w-1/2 w-full flex-1 lg:h-screen flex flex-col justify-center items-center px-6 py-12 lg:px-24 xl:px-32 bg-white dark:bg-[#182620]">
+        <div className="w-full max-w-lg flex flex-col items-start gap-8">
+          {/* Logo */}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-[#102219]">
+              <span className="material-symbols-outlined text-2xl">
+                account_balance_wallet
+              </span>
             </div>
+            <span className="text-xl font-extrabold tracking-tight text-text-main dark:text-white">
+              COUPLE BUDGET
+            </span>
           </div>
 
-          {/* Text Content */}
-          <div className="flex flex-col items-center text-center gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="material-symbols-outlined text-primary text-3xl sm:text-4xl">
-                savings
-              </span>
-              <span className="text-sm sm:text-base font-bold tracking-widest text-primary uppercase">
-                Couple Budget
-              </span>
-            </div>
-            <h1 className="text-text-main dark:text-white tracking-tight text-[28px] sm:text-[36px] md:text-[42px] font-bold leading-tight px-2">
+          {/* Heading & Description */}
+          <div className="flex flex-col gap-4">
+            <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-text-main dark:text-white">
               ふたりの家計簿を
-              <br />
-              はじめよう
+              <br className="hidden lg:block" />
+              はじめる
             </h1>
-            <p className="text-text-sub dark:text-gray-400 text-base sm:text-lg md:text-xl font-normal leading-relaxed px-4 max-w-[300px] sm:max-w-[400px] md:max-w-[480px]">
-              共有財布も個人財布もこれひとつで。
-              <br />
-              シンプルで使いやすい家計簿アプリ。
+            <p className="text-base lg:text-lg text-text-sub dark:text-[#a0c2b0] leading-relaxed">
+              共有の財布も、個人の財布も、これひとつで。
+              <br className="hidden lg:block" />
+              ふたりの未来のために、賢くお金を管理しましょう。
+              <br className="hidden lg:block" />
+              割り勘計算もスムーズに、ストレスフリーな家計管理を。
             </p>
           </div>
 
-          {/* Features / Small Grid */}
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-[320px] sm:max-w-[400px] md:max-w-[480px] mb-8 sm:mb-10 md:mb-12 opacity-80">
-            <div className="bg-primary-light dark:bg-white/5 rounded-xl p-3 sm:p-4 md:p-5 flex items-center justify-center gap-2 border border-transparent dark:border-white/10">
-              <span className="material-symbols-outlined text-primary text-xl sm:text-2xl">
-                account_balance_wallet
-              </span>
-              <span className="text-xs sm:text-sm font-bold text-text-sub dark:text-gray-300">
-                共有ウォレット
-              </span>
-            </div>
-            <div className="bg-primary-light dark:bg-white/5 rounded-xl p-3 sm:p-4 md:p-5 flex items-center justify-center gap-2 border border-transparent dark:border-white/10">
-              <span className="material-symbols-outlined text-blue-400 text-xl sm:text-2xl">
-                pie_chart
-              </span>
-              <span className="text-xs sm:text-sm font-bold text-text-sub dark:text-gray-300">
-                自動グラフ化
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Action Area */}
-        <div className="w-full px-6 sm:px-8 md:px-12 py-6 sm:py-8 bg-white dark:bg-gray-900 shrink-0 border-t border-border dark:border-gray-800">
-          <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-[480px] mx-auto">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full pt-4">
             <Link
               href="/register"
-              className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 sm:h-16 px-5 bg-primary hover:bg-primary-hover transition-colors text-text-inverse dark:text-white text-base sm:text-lg font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/20 active:scale-[0.98]"
+              className="flex-1 flex items-center justify-center h-14 px-8 rounded-full bg-primary text-[#102219] text-lg font-bold hover:bg-primary-hover active:scale-[0.98] transition-all shadow-lg shadow-primary/20"
             >
-              <span className="truncate">新規登録</span>
+              新規登録
             </Link>
             <Link
               href="/login"
-              className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 sm:h-16 px-5 bg-primary-light dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors text-text-main dark:text-white text-base sm:text-lg font-bold leading-normal tracking-[0.015em] active:scale-[0.98]"
+              className="flex-1 flex items-center justify-center h-14 px-8 rounded-full bg-gray-100 dark:bg-white/10 text-text-main dark:text-white text-lg font-bold hover:bg-gray-200 dark:hover:bg-white/20 active:scale-[0.98] transition-all"
             >
-              <span className="truncate">ログイン</span>
+              ログイン
             </Link>
           </div>
-          <p className="text-xs sm:text-sm text-center text-text-sub dark:text-gray-500 mt-6">
-            利用を開始することで、
-            <Link href="/terms" className="underline hover:text-primary">
-              利用規約
-            </Link>{" "}
-            と{" "}
-            <Link href="/privacy" className="underline hover:text-primary">
-              プライバシーポリシー
-            </Link>{" "}
-            に同意したものとみなされます。
-          </p>
+
+          {/* Footer Links */}
+          <div className="w-full pt-4 border-t border-gray-100 dark:border-white/10 mt-4">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-sub dark:text-[#a0c2b0]">
+              <Link href="#features" className="hover:text-primary transition-colors">
+                機能紹介
+              </Link>
+              <Link href="#pricing" className="hover:text-primary transition-colors">
+                プラン・料金
+              </Link>
+              <Link href="#faq" className="hover:text-primary transition-colors">
+                よくある質問
+              </Link>
+              <Link href="#contact" className="hover:text-primary transition-colors ml-auto">
+                お問い合わせ
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
